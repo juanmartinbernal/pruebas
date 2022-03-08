@@ -1,0 +1,231 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "title": "New content",
+      "type": "LANDSCAPE"
+    },
+    {
+      "id": 2,
+      "title": "May you want to see",
+      "type": "PORTRAIT"
+    },
+    {
+      "id": 3,
+      "title": "Films of the year",
+      "type": "LANDSCAPE"
+    }
+  ],
+  "videos": [
+    {
+      "id": "4RQFyIGCWt2h78",
+      "thumb": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerFun.jpg",
+      "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+      "categoryId": 1,
+      "name": "False Queen"
+    },
+    {
+      "id": "XT95sxMpT1AtkE",
+      "thumb": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerMeltdowns.jpg",
+      "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4",
+      "categoryId": 1,
+      "name": "Wrathful Quiet"
+    },
+    {
+      "id": "lvFq8GIKSuZFGe",
+      "thumb": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerJoyrides.jpg",
+      "videoUrl": "https://www.rmp-streaming.com/media/big-buck-bunny-360p.mp4",
+      "categoryId": 3,
+      "name": "Handsome View"
+    },
+    {
+      "id": "H9s6mCKVixgRHT",
+      "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/GunsofNavarone.jpg/220px-GunsofNavarone.jpg",
+      "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+      "categoryId": 2,
+      "name": "Sophisticated Judgment"
+    },
+    {
+      "id": "7QP5KWHDfeJSVz",
+      "thumb": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg",
+      "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4",
+      "categoryId": 1,
+      "name": "Serious Calm"
+    },
+    {
+      "id": "cGlVZwomERYr1t",
+      "thumb": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/TearsOfSteel.jpg",
+      "videoUrl": "https://test-videos.co.uk/vids/jellyfish/mp4/h264/1080/Jellyfish_1080_10s_30MB.mp4",
+      "categoryId": 1,
+      "name": "Fantastic Understanding"
+    },
+    {
+      "id": "9yjv3s6pWOW61R",
+      "thumb": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerJoyrides.jpg",
+      "videoUrl": "https://test-videos.co.uk/vids/sintel/mp4/h264/720/Sintel_720_10s_30MB.mp4",
+      "categoryId": 3,
+      "name": "Fantastic Comment"
+    },
+    {
+      "id": "iRXuJTufM8ydoS",
+      "thumb": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg",
+      "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4",
+      "categoryId": 3,
+      "name": "Idolized Possible"
+    },
+    {
+      "id": "i1m5IJIwsnT70a",
+      "thumb": "https://m.media-amazon.com/images/M/MV5BNWE4OTNiM2ItMjY4Ni00ZTViLWFiZmEtZGEyNGY2ZmNlMzIyXkEyXkFqcGdeQXVyMDU5NDcxNw@@._V1_SX300.jpg",
+      "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
+      "categoryId": 2,
+      "name": "Rotten Grand"
+    },
+    {
+      "id": "j9jIhAI726bzfl",
+      "thumb": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerEscapes.jpg",
+      "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+      "categoryId": 3,
+      "name": "Stark Muscle"
+    },
+    {
+      "id": "GQPUCUryaRvp4F",
+      "thumb": "https://i1.wp.com/www.periodismo.com/wp-content/subid/posters.jpg",
+      "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.jpg",
+      "categoryId": 2,
+      "name": "Soupy Plant"
+    },
+    {
+      "id": "WKi7wptGgHclR0",
+      "thumb": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerFun.jpg",
+      "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+      "categoryId": 3,
+      "name": "Firm Thought"
+    },
+    {
+      "id": "gDfTyYkAtA3K4p",
+      "thumb": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerEscapes.jpg",
+      "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
+      "categoryId": 1,
+      "name": "Bogus Cup"
+    },
+    {
+      "id": "PWPbgHioODQti7",
+      "thumb": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ElephantsDream.jpg",
+      "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4",
+      "categoryId": 1,
+      "name": "Demanding Stomach"
+    },
+    {
+      "id": "q236HsMYzcmWhq",
+      "thumb": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ElephantsDream.jpg",
+      "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+      "categoryId": 1,
+      "name": "Average Perception"
+    },
+    {
+      "id": "UdKPfXMgncommT",
+      "thumb": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerBlazes.jpg",
+      "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+      "categoryId": 1,
+      "name": "Yellow Method"
+    },
+    {
+      "id": "7WXzgoL8OHwSG6",
+      "thumb": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerJoyrides.jpg",
+      "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.jpg",
+      "categoryId": 3,
+      "name": "Oddball Inspection"
+    },
+    {
+      "id": "rPX5WHH49xLLS8",
+      "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Vertigomovie_restoration.png/220px-Vertigomovie_restoration.png",
+      "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
+      "categoryId": 2,
+      "name": "Conscious Union"
+    },
+    {
+      "id": "pFEeiTgDZXZB4z",
+      "thumb": "https://i1.wp.com/www.periodismo.com/wp-content/subid/default.jpg",
+      "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+      "categoryId": 2,
+      "name": "Wasteful Yesterday"
+    },
+    {
+      "id": "82C7QqysDCBZ8F",
+      "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Vertigomovie_restoration.png/220px-Vertigomovie_restoration.png",
+      "videoUrl": "https://www.rmp-streaming.com/media/big-buck-bunny-360p.mp4",
+      "categoryId": 2,
+      "name": "Stimulating Letter"
+    },
+    {
+      "id": "OxSba3w5mds8fq",
+      "thumb": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerFun.jpg",
+      "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.jpg",
+      "categoryId": 3,
+      "name": "Frizzy Comparison"
+    },
+    {
+      "id": "cHkfOtELH9HPHp",
+      "thumb": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerMeltdowns.jpg",
+      "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+      "categoryId": 3,
+      "name": "Miniature Kick"
+    },
+    {
+      "id": "AXtro2CptxKsoi",
+      "thumb": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/SubaruOutbackOnStreetAndDirt.jpg",
+      "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.jpg",
+      "categoryId": 1,
+      "name": "Woeful Read"
+    },
+    {
+      "id": "AUKQKm6A7mAU6P",
+      "thumb": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg",
+      "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+      "categoryId": 1,
+      "name": "Potable Boring"
+    },
+    {
+      "id": "H5ao4YTmt8X4cL",
+      "thumb": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ElephantsDream.jpg",
+      "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.jpg",
+      "categoryId": 3,
+      "name": "Treasured Island"
+    },
+    {
+      "id": "mNWXOg5gevZ1Ej",
+      "thumb": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerFun.jpg",
+      "videoUrl": "https://test-videos.co.uk/vids/sintel/mp4/h264/720/Sintel_720_10s_30MB.mp4",
+      "categoryId": 1,
+      "name": "Growling Half"
+    },
+    {
+      "id": "rSoegHuK2xtmFJ",
+      "thumb": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerEscapes.jpg",
+      "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
+      "categoryId": 3,
+      "name": "Obvious Father"
+    },
+    {
+      "id": "V4VDXuR5kGJ1it",
+      "thumb": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/Sintel.jpg",
+      "videoUrl": "https://test-videos.co.uk/vids/jellyfish/mp4/h264/1080/Jellyfish_1080_10s_30MB.mp4",
+      "categoryId": 3,
+      "name": "Unpleasant Entry"
+    },
+    {
+      "id": "d0LXt3UfQX7CAV",
+      "thumb": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg",
+      "videoUrl": "https://test-videos.co.uk/vids/sintel/mp4/h264/720/Sintel_720_10s_30MB.mp4",
+      "categoryId": 3,
+      "name": "Aggravating Shopping"
+    },
+    {
+      "id": "r149LdT3VsN9LJ",
+      "thumb": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/Sintel.jpg",
+      "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+      "categoryId": 3,
+      "name": "Same Nasty"
+    }
+  ]
+}
