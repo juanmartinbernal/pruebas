@@ -11,5 +11,5 @@ import retrofit2.http.GET
 
 interface VideosService {
     @GET("uc?id=1ldaCVV28Xtk-EVXhv7xh8ebR9kzfha0v")
-    suspend fun fetchVideos(): Response<VideoDataResult>
+    suspend fun fetchVideos(): Response<VideoData>
 }

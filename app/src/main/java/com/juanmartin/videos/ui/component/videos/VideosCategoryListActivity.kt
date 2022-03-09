@@ -85,10 +85,10 @@ class VideosCategoryListActivity : BaseActivity() {
 
 
     private fun bindListData(videos: VideoDataResult) {
-        if (!(videos.videosList.isNullOrEmpty())) {
+        if (!(videos.videosList.categories.isNullOrEmpty())) {
             categoryAdapter = VideoCategoryAdapter(
                 videosCategoryListViewModel,
-                videos.videosList.get(0).categories
+                videos.videosList.categories
             )
             binding.rvCategoryList.adapter = categoryAdapter
             showDataView(true)
