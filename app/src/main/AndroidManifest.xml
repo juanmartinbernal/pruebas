@@ -16,7 +16,8 @@
         android:supportsRtl="true"
         android:largeHeap="true"
         android:theme="@style/Theme.Videos">
-        <activity android:name=".ui.component.videos.VideosCategoryListActivity">
+        <activity android:name=".ui.component.videos.VideosCategoryListActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
