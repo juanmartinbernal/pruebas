@@ -5,9 +5,10 @@
     android:id="@+id/rl_shop_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/margin_outside"
+    android:layout_marginStart="@dimen/margin_outside"
+    android:layout_marginEnd="@dimen/margin_outside"
     app:cardCornerRadius="@dimen/cardview_border"
-    app:cardElevation="1dp"
+    app:cardElevation="@dimen/space_min"
     app:cardUseCompatPadding="true">
 
     <LinearLayout
