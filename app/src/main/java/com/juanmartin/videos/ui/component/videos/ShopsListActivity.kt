@@ -68,6 +68,8 @@ class ShopsListActivity : BaseActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_actions, menu)
         // Associate searchable configuration with the SearchView
+        val item = menu?.findItem(R.id.action_search);
+
         val searchView = menu?.findItem(R.id.action_search)?.actionView as SearchView
         searchView.queryHint = getString(R.string.search)
         val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
@@ -76,14 +78,26 @@ class ShopsListActivity : BaseActivity() {
         }
         searchView.setOnQueryTextListener(object : OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                handleSearch(query)
-                return false
+                return true
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
-                return false
+                handleSearch(newText)
+                return true
             }
         })
+
+        item?.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
+            override fun onMenuItemActionCollapse(p0: MenuItem?): Boolean {
+                shopAdapter?.filter?.filter("")
+                return true
+            }
+
+            override fun onMenuItemActionExpand(p0: MenuItem?): Boolean {
+                return true
+            }
+        })
+
         return true
     }
 
@@ -95,10 +109,10 @@ class ShopsListActivity : BaseActivity() {
     }
 
     private fun handleSearch(query: String) {
-        if (query.isNotEmpty()) {
+        //if (query.isNotEmpty()) {
             binding.pbLoading.visibility = VISIBLE
-            // videosCategoryListViewModel.onSearchClick(query)
-        }
+            shopsListViewModel.onSearchClick(query)
+        //}
     }
 
     private fun filterByCategory(category: String) {
@@ -176,8 +190,8 @@ class ShopsListActivity : BaseActivity() {
     }
 
 
-    private fun showSearchResult(shopsItem: ShopsItem) {
-        shopsListViewModel.openCategoryDetails(shopsItem)
+    private fun showSearchResult(query: String) {
+        shopAdapter.filter.filter(query)
         binding.pbLoading.toGone()
     }
 

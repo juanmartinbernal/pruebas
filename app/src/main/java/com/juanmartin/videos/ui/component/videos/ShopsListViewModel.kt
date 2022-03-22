@@ -37,8 +37,8 @@ constructor(private val dataRepositoryRepository: DataRepositorySource) : BaseVi
 
     //TODO check to make them as one Resource
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
-    val searchFoundPrivate: MutableLiveData<ShopsItem> = MutableLiveData()
-    val searchFound: LiveData<ShopsItem> get() = searchFoundPrivate
+    val searchFoundPrivate: MutableLiveData<String> = MutableLiveData()
+    val searchFound: LiveData<String> get() = searchFoundPrivate
 
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     val noSearchFoundPrivate: MutableLiveData<Unit> = MutableLiveData()
@@ -87,5 +87,9 @@ constructor(private val dataRepositoryRepository: DataRepositorySource) : BaseVi
     fun showToastMessage(errorCode: Int) {
         val error = errorManager.getError(errorCode)
         showToastPrivate.value = SingleEvent(error.description)
+    }
+
+    fun onSearchClick(query: String) {
+        searchFoundPrivate.value = query
     }
 }

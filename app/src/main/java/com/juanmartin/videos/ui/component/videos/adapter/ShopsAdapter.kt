@@ -52,7 +52,7 @@ class ShopsAdapter(
                 } else {
                     val resultList = ArrayList<ShopsItem>()
                     for (row in shops) {
-                        if (row.category!= null && row.category.contains(charSearch)) {
+                        if (row.category!= null && row.category.contains(charSearch) ||  row.name.lowercase().contains(charSearch.lowercase())) {
                             resultList.add(row)
                         }
                     }
