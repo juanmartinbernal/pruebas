@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/juanm/AppData/Local/Android/Sdk/platforms/android-32/data/res/drawable-watch/sym_def_app_icon.xml" value="0.1" />
+        <entry key="..\:/Users/juanm/AppData/Local/Android/Sdk/platforms/android-32/data/res/drawable-watch/sym_def_app_icon_background.xml" value="0.1" />
+        <entry key="..\:/Users/juanm/AppData/Local/Android/Sdk/platforms/android-32/data/res/drawable/sym_def_app_icon.xml" value="0.1" />
         <entry key="..\:/git/pruebas/app/src/main/res/drawable/custom_border.xml" value="0.1" />
         <entry key="..\:/git/pruebas/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/git/pruebas/app/src/main/res/layout/category_activity.xml" value="0.3151041666666667" />

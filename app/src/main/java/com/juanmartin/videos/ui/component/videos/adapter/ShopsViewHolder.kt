@@ -9,6 +9,7 @@ import com.juanmartin.videos.*
 import com.juanmartin.videos.data.dto.comercios.ShopsItem
 import com.juanmartin.videos.databinding.ShopItemBinding
 import com.juanmartin.videos.ui.base.listeners.RecyclerItemListener
+import com.juanmartin.videos.utils.loadImage
 import com.squareup.picasso.Picasso
 import java.io.InputStream
 
@@ -21,16 +22,10 @@ class ShopsViewHolder(private val itemBinding: ShopItemBinding) :
         itemBinding.tvName.text = shopItem.name
         itemBinding.tvCaption.text = shopItem.openingHours
         itemBinding.tvCaption.isSelected = true
-        if(shopItem.shortDescription == null) {
-            itemBinding.tvDescrition.visibility = View.GONE
-        }else{
-            itemBinding.tvDescrition.visibility = View.VISIBLE
-        }
+        itemBinding.tvDescrition.visibility = if (shopItem.shortDescription == null )View.GONE else View.VISIBLE
         itemBinding.tvDescrition.text = shopItem.shortDescription
        // itemBinding.tvLocation.text = shopItem.address.country.plus(" ").plus( shopItem.address.city).plus(" ").plus(shopItem.address.street)
-        Picasso.get().load(shopItem.logo?.url).placeholder(R.mipmap.ic_launcher)
-            .into(itemBinding.ivShopItemImage)
-
+        itemBinding.ivShopItemImage.loadImage(shopItem.logo?.url)
         itemBinding.rlShopItem.setOnClickListener {
             recyclerItemListener.onItemSelected(
                 shopItem
