@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center_vertical"
     app:cardCornerRadius="@dimen/cardview_border"
-    app:cardElevation="10dp"
+    app:cardElevation="@dimen/space_min"
     app:cardUseCompatPadding="true">
 
 
