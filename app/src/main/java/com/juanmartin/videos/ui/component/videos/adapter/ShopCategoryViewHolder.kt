@@ -2,6 +2,7 @@ package com.juanmartin.videos.ui.component.videos.adapter
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.juanmartin.videos.*
@@ -14,8 +15,8 @@ class ShopCategoryViewHolder(private val itemBinding: ShopCategoryItemBinding) :
 
     fun bind(category: String, recyclerItemListener: RecyclerShowCategoryItemListener) {
         drawCategoryImage(category)
+        itemBinding.txtTitleCategory.visibility = if (category.isEmpty())  View.GONE else  View.VISIBLE
         itemBinding.txtTitleCategory.text = category
-
         itemBinding.rlCategoryItem.setOnClickListener {
             recyclerItemListener.onItemSelected(
                 category
@@ -43,6 +44,10 @@ class ShopCategoryViewHolder(private val itemBinding: ShopCategoryItemBinding) :
             }
             BEAUTY_CATEGORY -> {
                 resource = getResourceFromAssets("Truck_white.png")
+                resourceColor = ContextCompat.getColor(itemView.context, R.color.background_beauty);
+            }
+            ALL_CATEGORY -> {
+                resource = getResourceFromAssets("placeholder.png")
                 resourceColor = ContextCompat.getColor(itemView.context, R.color.background_beauty);
             }
             else -> {

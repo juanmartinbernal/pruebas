@@ -136,6 +136,7 @@ class ShopsListActivity : BaseActivity() {
                 }
 
             }
+            categories.add(0,ALL_CATEGORY);
             shopCategoryAdapter = ShopCategoryAdapter(shopsListViewModel, categories)
             binding.rvCategoryList.adapter = shopCategoryAdapter
         }
