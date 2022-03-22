@@ -2,11 +2,13 @@ package com.juanmartin.videos.data.remote
 
 
 import com.juanmartin.videos.data.Resource
-import com.juanmartin.videos.data.dto.videos.VideoData
-import com.juanmartin.videos.data.dto.videos.VideoDataResult
+import com.juanmartin.videos.data.dto.comercios.Shops
+import com.juanmartin.videos.data.dto.comercios.ShopsItem
+import com.juanmartin.videos.data.error.DEFAULT_ERROR
 import com.juanmartin.videos.data.error.NETWORK_ERROR
 import com.juanmartin.videos.data.error.NO_INTERNET_CONNECTION
 import com.juanmartin.videos.data.remote.service.VideosService
+import com.juanmartin.videos.ui.component.videos.entities.ParamFilter
 import com.juanmartin.videos.utils.NetworkConnectivity
 import retrofit2.Response
 import java.io.IOException
@@ -19,14 +21,28 @@ constructor(
     private val networkConnectivity: NetworkConnectivity
 ) :
     RemoteDataSource {
-    override suspend fun requestVideos(): Resource<VideoDataResult> {
+    override suspend fun requestShops(params : ParamFilter): Resource<Shops> {
         val videosService = serviceGenerator.createService(VideosService::class.java)
         return when (val response = processCall(videosService::fetchVideos)) {
             is List<*> -> {
-                Resource.Success(data = VideoDataResult(response as VideoData))
+                Resource.Success(data = Shops(response as ArrayList<ShopsItem>))
+                /*if(params.category.isNotEmpty()){
+                    val result = Shops(response as ArrayList<ShopsItem>)
+                    val filter : MutableList<ShopsItem> = ArrayList()
+
+                    result.shopsList.forEach {
+                        if(it.category != null && it.category.contains(params.category)){
+                            filter.add(it)
+                        }
+                    }
+                    Resource.Success(data = Shops(filter as ArrayList<ShopsItem>))
+                }else {
+                    Resource.Success(data = Shops(response as ArrayList<ShopsItem>))
+                }*/
             }
             else -> {
-                Resource.Success(data = VideoDataResult(response as VideoData))
+                return Resource.DataError(errorCode = DEFAULT_ERROR)
+                //Resource.Success(data = Shops(response as ArrayList<ShopsItem>))
                 //   Resource.DataError(errorCode = DEFAULT_ERROR/*response as Int*/)
             }
         }

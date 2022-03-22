@@ -1,5 +1,10 @@
 package com.juanmartin.videos
 
-const val SPLASH_DELAY = 3000
-const val BASE_URL = "https://drive.google.com/"
-const val SHARED_PREFERENCES_FILE_NAME = "videos"
+const val BASE_URL = "http://prod.klikin.com/"
+
+const val SHOP_ITEM_KEY = "SHOP_ITEM_KEY"
+const val SHOPPING_CATEGORY = "SHOPPING";
+const val FOOD_CATEGORY = "FOOD";
+const val LEISURE_CATEGORY = "LEISURE";
+const val BEAUTY_CATEGORY = "BEAUTY";
+const val OTHER_CATEGORY = "OTHER";

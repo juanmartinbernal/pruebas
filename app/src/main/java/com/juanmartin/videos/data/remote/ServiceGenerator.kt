@@ -2,23 +2,17 @@ package com.juanmartin.videos.data.remote
 
 import com.juanmartin.videos.BASE_URL
 import com.juanmartin.videos.BuildConfig
-import com.juanmartin.videos.data.remote.moshiFactories.MyKotlinJsonAdapterFactory
-import com.juanmartin.videos.data.remote.moshiFactories.MyStandardJsonAdapters
-import com.squareup.moshi.Moshi
+
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.converter.moshi.MoshiConverterFactory
+
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 import javax.inject.Singleton
-
-/**
- * Created by AhmedEltaher
- */
 
 private const val timeoutRead = 30   //In seconds
 private const val contentType = "Content-Type"
@@ -58,20 +52,12 @@ class ServiceGenerator @Inject constructor() {
         val client = okHttpBuilder.build()
         retrofit = Retrofit.Builder()
                 .baseUrl(BASE_URL).client(client)
-            //.addConverterFactory(GsonConverterFactory.create())
-            //.addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(MoshiConverterFactory.create(getMoshi()))
+            .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build()
     }
 
     fun <S> createService(serviceClass: Class<S>): S {
         return retrofit.create(serviceClass)
-    }
-
-    private fun getMoshi(): Moshi {
-        return Moshi.Builder()
-                .add(MyKotlinJsonAdapterFactory())
-                .add(MyStandardJsonAdapters.FACTORY)
-                .build()
     }
 }

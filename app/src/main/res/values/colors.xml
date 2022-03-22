@@ -7,4 +7,9 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="background_beauty">#FF329F</color>
+    <color name="background_food">#ffc800</color>
+    <color name="background_shopping">#ff6200</color>
+    <color name="background_leisure">#004b8c</color>
+    <color name="background_other">#FF018786</color>
 </resources>

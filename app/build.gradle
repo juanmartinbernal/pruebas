@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId "com.juanmartin.videos"
-        minSdkVersion 21
+        minSdkVersion 23
         targetSdkVersion 32
         versionCode 1
         versionName "1.0"
@@ -75,9 +75,9 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.4.1")
 
     // retrofit
-    implementation "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
-    implementation "com.squareup.moshi:moshi:$moshiVersion"
-    kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion"
+   // implementation "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
+    //implementation "com.squareup.moshi:moshi:$moshiVersion"
+    //kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttpInterceptorVersion"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.ext.retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$rootProject.ext.retrofitVersion"

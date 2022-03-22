@@ -1,9 +1,10 @@
 package com.juanmartin.videos.data
 
 
-import com.juanmartin.videos.data.dto.videos.VideoDataResult
+import com.juanmartin.videos.data.dto.comercios.Shops
 import com.juanmartin.videos.data.local.LocalData
 import com.juanmartin.videos.data.remote.RemoteData
+import com.juanmartin.videos.ui.component.videos.entities.ParamFilter
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
@@ -17,9 +18,9 @@ import kotlin.coroutines.CoroutineContext
 
 class DataRepository @Inject constructor(private val remoteRepository: RemoteData, private val localRepository: LocalData, private val ioDispatcher: CoroutineContext) : DataRepositorySource {
 
-    override suspend fun requestVideos(): Flow<Resource<VideoDataResult>> {
+    override suspend fun requestVideos(params : ParamFilter): Flow<Resource<Shops>> {
         return flow {
-            emit(remoteRepository.requestVideos())
+            emit(remoteRepository.requestShops(params))
         }.flowOn(ioDispatcher)
     }
 

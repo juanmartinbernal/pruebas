@@ -14,9 +14,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:largeHeap="true"
         android:theme="@style/Theme.Videos">
-        <activity android:name=".ui.component.videos.VideosCategoryListActivity"
+        <activity android:name=".ui.component.videos.ShopsListActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
