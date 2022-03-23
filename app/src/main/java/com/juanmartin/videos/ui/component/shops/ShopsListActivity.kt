@@ -1,45 +1,38 @@
-package com.juanmartin.videos.ui.component.videos
+package com.juanmartin.videos.ui.component.shops
 
 import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View.GONE
 import android.view.View.VISIBLE
-import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.SearchView
 import android.widget.SearchView.OnQueryTextListener
-import android.widget.TextView
 import androidx.activity.viewModels
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
-import com.juanmartin.videos.*
+import com.juanmartin.videos.ALL_CATEGORY
+import com.juanmartin.videos.R
+import com.juanmartin.videos.SHOP_ITEM_KEY
 import com.juanmartin.videos.data.Resource
 import com.juanmartin.videos.data.dto.comercios.Shops
 import com.juanmartin.videos.data.dto.comercios.ShopsItem
 import com.juanmartin.videos.data.error.SEARCH_ERROR
-import com.juanmartin.videos.databinding.CategoryActivityBinding
+import com.juanmartin.videos.databinding.ShopsActivityBinding
 import com.juanmartin.videos.ui.base.BaseActivity
-import com.juanmartin.videos.ui.component.videos.adapter.ShopCategoryAdapter
-import com.juanmartin.videos.ui.component.videos.adapter.ShopsAdapter
+import com.juanmartin.videos.ui.component.shops.adapter.ShopCategoryAdapter
+import com.juanmartin.videos.ui.component.shops.adapter.ShopsAdapter
+import com.juanmartin.videos.ui.component.shops.details.DetailsActivity
 import com.juanmartin.videos.utils.*
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
-import java.io.InputStream
 
 
 @AndroidEntryPoint
 class ShopsListActivity : BaseActivity() {
-    private lateinit var binding: CategoryActivityBinding
+    private lateinit var binding: ShopsActivityBinding
 
     private val shopsListViewModel: ShopsListViewModel by viewModels()
     private lateinit var shopAdapter: ShopsAdapter
@@ -47,7 +40,7 @@ class ShopsListActivity : BaseActivity() {
 
 
     override fun initViewBinding() {
-        binding = CategoryActivityBinding.inflate(layoutInflater)
+        binding = ShopsActivityBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
     }
@@ -62,7 +55,7 @@ class ShopsListActivity : BaseActivity() {
         binding.rvCategoryList.setHasFixedSize(true)
         binding.rvShopList.layoutManager = layoutManager
         binding.rvShopList.setHasFixedSize(true)
-        shopsListViewModel.getVideos()
+        shopsListViewModel.getShops()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -103,15 +96,15 @@ class ShopsListActivity : BaseActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_refresh -> shopsListViewModel.getVideos()
+            R.id.action_refresh -> shopsListViewModel.getShops()
         }
         return super.onOptionsItemSelected(item)
     }
 
     private fun handleSearch(query: String) {
         //if (query.isNotEmpty()) {
-            binding.pbLoading.visibility = VISIBLE
-            shopsListViewModel.onSearchClick(query)
+        binding.pbLoading.visibility = VISIBLE
+        shopsListViewModel.onSearchClick(query)
         //}
     }
 
@@ -120,7 +113,7 @@ class ShopsListActivity : BaseActivity() {
         shopAdapter.filter.filter(category)
     }
 
-    private fun updateShops(totalShops : Int){
+    private fun updateShops(totalShops: Int) {
         binding.txtTotalShops.text = totalShops.toString()
     }
 
@@ -150,7 +143,7 @@ class ShopsListActivity : BaseActivity() {
                 }
 
             }
-            categories.add(0,ALL_CATEGORY);
+            categories.add(0, ALL_CATEGORY);
             shopCategoryAdapter = ShopCategoryAdapter(shopsListViewModel, categories)
             binding.rvCategoryList.adapter = shopCategoryAdapter
         }
@@ -158,10 +151,10 @@ class ShopsListActivity : BaseActivity() {
     }
 
     private fun navigateToDetailsScreen(shopItem: ShopsItem) {
-        /*val nextScreenIntent = Intent(this, DetailsActivity::class.java).apply {
+        val nextScreenIntent = Intent(this, DetailsActivity::class.java).apply {
             putExtra(SHOP_ITEM_KEY, shopItem)
         }
-        startActivity(nextScreenIntent)*/
+        startActivity(nextScreenIntent)
     }
 
 
@@ -212,12 +205,12 @@ class ShopsListActivity : BaseActivity() {
     }
 
     override fun observeViewModel() {
-        observe(shopsListViewModel.categoriesLiveData, ::handleCategoriesList)
+        observe(shopsListViewModel.shopsLiveData, ::handleCategoriesList)
         observe(shopsListViewModel.searchFound, ::showSearchResult)
         observe(shopsListViewModel.noSearchFound, ::noSearchResult)
-        observe(shopsListViewModel.totalShopsData, :: updateShops)
+        observe(shopsListViewModel.totalShopsData, ::updateShops)
         observe(shopsListViewModel.filterByCategoriesData, ::filterByCategory)
-        observe(shopsListViewModel.openCategorieDetails, ::navigateToDetailsScreen)
+        observe(shopsListViewModel.openShopDetails, ::navigateToDetailsScreen)
         observeSnackBarMessages(shopsListViewModel.showSnackBar)
         observeToast(shopsListViewModel.showToast)
 

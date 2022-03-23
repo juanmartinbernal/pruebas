@@ -8,7 +8,7 @@ import com.juanmartin.videos.data.error.DEFAULT_ERROR
 import com.juanmartin.videos.data.error.NETWORK_ERROR
 import com.juanmartin.videos.data.error.NO_INTERNET_CONNECTION
 import com.juanmartin.videos.data.remote.service.VideosService
-import com.juanmartin.videos.ui.component.videos.entities.ParamFilter
+import com.juanmartin.videos.ui.component.shops.entities.ParamFilter
 import com.juanmartin.videos.utils.NetworkConnectivity
 import retrofit2.Response
 import java.io.IOException

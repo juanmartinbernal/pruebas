@@ -1,4 +1,4 @@
-package com.juanmartin.videos.ui.component.videos
+package com.juanmartin.videos.ui.component.shops
 
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData
@@ -9,7 +9,7 @@ import com.juanmartin.videos.data.Resource
 import com.juanmartin.videos.data.dto.comercios.Shops
 import com.juanmartin.videos.data.dto.comercios.ShopsItem
 import com.juanmartin.videos.ui.base.BaseViewModel
-import com.juanmartin.videos.ui.component.videos.entities.ParamFilter
+import com.juanmartin.videos.ui.component.shops.entities.ParamFilter
 import com.juanmartin.videos.utils.SingleEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
@@ -26,8 +26,8 @@ constructor(private val dataRepositoryRepository: DataRepositorySource) : BaseVi
      * Data --> LiveData, Exposed as LiveData, Locally in viewModel as MutableLiveData
      */
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
-    val categoriesLiveDataPrivate = MutableLiveData<Resource<Shops>>()
-    val categoriesLiveData: LiveData<Resource<Shops>> get() = categoriesLiveDataPrivate
+    val shopsLiveDataPrivate = MutableLiveData<Resource<Shops>>()
+    val shopsLiveData: LiveData<Resource<Shops>> get() = shopsLiveDataPrivate
 
     val filterByCategoriesPrivate = MutableLiveData<String>()
     val filterByCategoriesData: LiveData<String> get() = filterByCategoriesPrivate
@@ -48,8 +48,8 @@ constructor(private val dataRepositoryRepository: DataRepositorySource) : BaseVi
      * UI actions as event, user action is single one time event, Shouldn't be multiple time consumption
      */
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
-    private val openCategorieDetailsPrivate = MutableLiveData<ShopsItem>()
-    val openCategorieDetails: LiveData<ShopsItem> get() = openCategorieDetailsPrivate
+    private val openShopDetailsPrivate = MutableLiveData<ShopsItem>()
+    val openShopDetails: LiveData<ShopsItem> get() = openShopDetailsPrivate
 
     /**
      * Error handling as UI
@@ -63,17 +63,17 @@ constructor(private val dataRepositoryRepository: DataRepositorySource) : BaseVi
     val showToast: LiveData<SingleEvent<Any>> get() = showToastPrivate
 
 
-    fun getVideos() {
+    fun getShops() {
         viewModelScope.launch {
-            categoriesLiveDataPrivate.value = Resource.Loading()
-            dataRepositoryRepository.requestVideos(params).collect {
-                categoriesLiveDataPrivate.value = it
+            shopsLiveDataPrivate.value = Resource.Loading()
+            dataRepositoryRepository.requestShops(params).collect {
+                shopsLiveDataPrivate.value = it
             }
         }
     }
 
-    fun openCategoryDetails(shopItem: ShopsItem) {
-        openCategorieDetailsPrivate.value = shopItem
+    fun openShopDetails(shopItem: ShopsItem) {
+        openShopDetailsPrivate.value = shopItem
     }
 
     fun filterByCategories(category : String){

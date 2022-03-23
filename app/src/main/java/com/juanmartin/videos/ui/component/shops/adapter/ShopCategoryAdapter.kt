@@ -1,11 +1,11 @@
-package com.juanmartin.videos.ui.component.videos.adapter
+package com.juanmartin.videos.ui.component.shops.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.juanmartin.videos.databinding.ShopCategoryItemBinding
-import com.juanmartin.videos.ui.component.videos.ShopsListViewModel
-import com.juanmartin.videos.ui.component.videos.listeners.RecyclerShowCategoryItemListener
+import com.juanmartin.videos.ui.component.shops.ShopsListViewModel
+import com.juanmartin.videos.ui.component.shops.listeners.RecyclerShowCategoryItemListener
 
 class ShopCategoryAdapter(
     private val shopsListViewModel: ShopsListViewModel,

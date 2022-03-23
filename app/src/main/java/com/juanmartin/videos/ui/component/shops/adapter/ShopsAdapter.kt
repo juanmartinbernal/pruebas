@@ -1,4 +1,4 @@
-package com.juanmartin.videos.ui.component.videos.adapter
+package com.juanmartin.videos.ui.component.shops.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.juanmartin.videos.data.dto.comercios.ShopsItem
 import com.juanmartin.videos.databinding.ShopItemBinding
 import com.juanmartin.videos.ui.base.listeners.RecyclerItemListener
-import com.juanmartin.videos.ui.component.videos.ShopsListViewModel
+import com.juanmartin.videos.ui.component.shops.ShopsListViewModel
 import kotlin.collections.ArrayList
 
 
@@ -25,7 +25,7 @@ class ShopsAdapter(
 
     private val onItemClickListener: RecyclerItemListener = object : RecyclerItemListener {
         override fun onItemSelected(shopItem: ShopsItem) {
-            shopsListViewModel.openCategoryDetails(shopItem)
+            shopsListViewModel.openShopDetails(shopItem)
         }
     }
 

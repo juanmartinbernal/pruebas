@@ -1,4 +1,4 @@
-package com.juanmartin.videos.ui.component.videos.adapter
+package com.juanmartin.videos.ui.component.shops.adapter
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -10,7 +10,6 @@ import com.juanmartin.videos.data.dto.comercios.ShopsItem
 import com.juanmartin.videos.databinding.ShopItemBinding
 import com.juanmartin.videos.ui.base.listeners.RecyclerItemListener
 import com.juanmartin.videos.utils.loadImage
-import com.squareup.picasso.Picasso
 import java.io.InputStream
 
 

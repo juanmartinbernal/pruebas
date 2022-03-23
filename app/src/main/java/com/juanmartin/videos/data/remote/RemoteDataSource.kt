@@ -2,7 +2,7 @@ package com.juanmartin.videos.data.remote
 
 import com.juanmartin.videos.data.Resource
 import com.juanmartin.videos.data.dto.comercios.Shops
-import com.juanmartin.videos.ui.component.videos.entities.ParamFilter
+import com.juanmartin.videos.ui.component.shops.entities.ParamFilter
 
 
 /**

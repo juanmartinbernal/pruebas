@@ -1,4 +1,4 @@
-package com.juanmartin.videos.ui.component.videos.adapter
+package com.juanmartin.videos.ui.component.shops.adapter
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -7,7 +7,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.juanmartin.videos.*
 import com.juanmartin.videos.databinding.ShopCategoryItemBinding
-import com.juanmartin.videos.ui.component.videos.listeners.RecyclerShowCategoryItemListener
+import com.juanmartin.videos.ui.component.shops.listeners.RecyclerShowCategoryItemListener
 import java.io.InputStream
 
 class ShopCategoryViewHolder(private val itemBinding: ShopCategoryItemBinding) :

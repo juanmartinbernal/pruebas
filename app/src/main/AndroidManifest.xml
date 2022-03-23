@@ -17,7 +17,7 @@
         android:usesCleartextTraffic="true"
         android:largeHeap="true"
         android:theme="@style/Theme.Videos">
-        <activity android:name=".ui.component.videos.ShopsListActivity"
+        <activity android:name=".ui.component.shops.ShopsListActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,6 +25,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".ui.component.shops.details.DetailsActivity"
+            android:label="@string/title_activity_shops_details" />
     </application>
 
 </manifest>
