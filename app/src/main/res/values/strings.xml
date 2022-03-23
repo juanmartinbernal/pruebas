@@ -8,4 +8,7 @@
     <string name="shops_title">Comercios</string>
     <string name="open">Open:</string>
     <string name="title_activity_shops_details">Detalle comercio</string>
+    <string name="prompt_about_shop">Sobre el comercio</string>
+    <string name="prompt_go_location">Llévame aquí</string>
+    <string name="prompt_text_location">Localización</string>
 </resources>

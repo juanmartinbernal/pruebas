@@ -7,12 +7,14 @@
         <entry key="..\:/Users/juanm/AppData/Local/Android/Sdk/platforms/android-32/data/res/drawable-watch/sym_def_app_icon_background.xml" value="0.1" />
         <entry key="..\:/Users/juanm/AppData/Local/Android/Sdk/platforms/android-32/data/res/drawable/sym_def_app_icon.xml" value="0.1" />
         <entry key="..\:/git/pruebas/app/src/main/res/drawable/custom_border.xml" value="0.1" />
+        <entry key="..\:/git/pruebas/app/src/main/res/drawable/image_border.xml" value="0.123" />
         <entry key="..\:/git/pruebas/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/git/pruebas/app/src/main/res/layout/category_activity.xml" value="0.3151041666666667" />
         <entry key="..\:/git/pruebas/app/src/main/res/layout/category_item.xml" value="0.1" />
-        <entry key="..\:/git/pruebas/app/src/main/res/layout/details_layout.xml" value="0.11197916666666667" />
+        <entry key="..\:/git/pruebas/app/src/main/res/layout/details_layout.xml" value="0.3217391304347826" />
         <entry key="..\:/git/pruebas/app/src/main/res/layout/shop_category_item.xml" value="0.536" />
         <entry key="..\:/git/pruebas/app/src/main/res/layout/shop_item.xml" value="0.1646090534979424" />
+        <entry key="..\:/git/pruebas/app/src/main/res/layout/shops_activity.xml" value="0.11197916666666667" />
         <entry key="..\:/git/pruebas/app/src/main/res/menu/details_menu.xml" value="0.2" />
       </map>
     </option>
@@ -22,5 +24,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.4" />
+      </ProjectState>
+    </option>
   </component>
 </project>
