@@ -7,7 +7,7 @@ import com.juanmartin.videos.data.dto.comercios.ShopsItem
 import com.juanmartin.videos.data.error.DEFAULT_ERROR
 import com.juanmartin.videos.data.error.NETWORK_ERROR
 import com.juanmartin.videos.data.error.NO_INTERNET_CONNECTION
-import com.juanmartin.videos.data.remote.service.VideosService
+import com.juanmartin.videos.data.remote.service.Service
 import com.juanmartin.videos.ui.component.shops.entities.ParamFilter
 import com.juanmartin.videos.utils.NetworkConnectivity
 import retrofit2.Response
@@ -22,7 +22,7 @@ constructor(
 ) :
     RemoteDataSource {
     override suspend fun requestShops(params : ParamFilter): Resource<Shops> {
-        val videosService = serviceGenerator.createService(VideosService::class.java)
+        val videosService = serviceGenerator.createService(Service::class.java)
         return when (val response = processCall(videosService::fetchVideos)) {
             is List<*> -> {
                 Resource.Success(data = Shops(response as ArrayList<ShopsItem>))
