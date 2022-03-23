@@ -137,7 +137,7 @@ class ShopsListActivity : BaseActivity() {
         if (!(shops.shopsList.isNullOrEmpty())) {
             shops.shopsList.forEach {
                 if (!categories.contains(it.category)) {
-                    if (it.category != null) {
+                    if (it.category != null && it.category.isNotEmpty()) {
                         categories.add(it.category)
                     }
                 }

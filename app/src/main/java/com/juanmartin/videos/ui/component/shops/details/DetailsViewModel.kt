@@ -22,7 +22,7 @@ open class DetailsViewModel @Inject constructor(private val dataRepository: Data
     val shopData: LiveData<ShopsItem> get() = shopPrivate
 
 
-    fun initIntentData(shopItem: ShopsItem) {
-        shopPrivate.value = shopItem
+    fun initIntentData(shopItem: ShopsItem?) {
+        shopPrivate.value = shopItem!!
     }
 }

@@ -2,15 +2,13 @@ package com.juanmartin.videos.ui.component.shops.details
 
 import android.os.Bundle
 import android.view.Menu
-import android.view.MenuItem
 import androidx.activity.viewModels
-import androidx.core.content.ContextCompat
 import com.juanmartin.videos.R
 import com.juanmartin.videos.SHOP_ITEM_KEY
-import com.juanmartin.videos.data.Resource
 import com.juanmartin.videos.data.dto.comercios.ShopsItem
 import com.juanmartin.videos.databinding.DetailsLayoutBinding
 import com.juanmartin.videos.ui.base.BaseActivity
+import com.juanmartin.videos.utils.loadImage
 import com.juanmartin.videos.utils.observe
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
@@ -32,7 +30,11 @@ class DetailsActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.initIntentData(intent.getParcelableExtra(SHOP_ITEM_KEY) ?: ShopsItem())
+
+        viewModel.initIntentData(
+            intent.getParcelableExtra(SHOP_ITEM_KEY)
+                ?: ShopsItem()/*intent.getParcelableExtra(SHOP_ITEM_KEY)*/
+        )
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
@@ -53,8 +55,6 @@ class DetailsActivity : BaseActivity() {
         binding.tvName.text = shopItem.name
         binding.tvHeadline.text = shopItem.openingHours
         binding.tvDescription.text = shopItem.description
-        Picasso.get().load(shopItem.logo?.url).placeholder(R.drawable.ic_launcher_background)
-            .into(binding.ivRecipeImage)
-
+        binding.ivRecipeImage.loadImage(shopItem.logo?.url)
     }
 }

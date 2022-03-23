@@ -1,6 +1,14 @@
 package com.juanmartin.videos.data.dto.comercios
 
+
+import android.os.Parcelable
+import com.squareup.moshi.Json
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class Deliveroo(
-    val active: Boolean,
-    val id: String
-)
+    @Json(name = "active")
+    val active: Boolean = false,
+    @Json(name = "id")
+    val id: String? = ""
+) : Parcelable

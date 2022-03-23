@@ -11,6 +11,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
+import com.juanmartin.videos.R
 import com.squareup.picasso.Picasso
 
 fun View.showKeyboard() {
@@ -100,6 +101,13 @@ fun View.showToast(
 
 
 fun ImageView.loadImage(@DrawableRes resId: Int) = Picasso.get().load(resId).into(this)
-fun ImageView.loadImage(url: String?) =
-    Picasso.get().load(url).placeholder(android.R.drawable.sym_def_app_icon)
-        .error(android.R.drawable.sym_def_app_icon).into(this)
+fun ImageView.loadImage(url: String?) {
+    if(url != null && url.isNotEmpty()){
+        Picasso.get().load(url).placeholder(android.R.drawable.sym_def_app_icon)
+            .error(android.R.drawable.sym_def_app_icon).into(this)
+    }else{
+        Picasso.get().load(R.drawable.ic_launcher_background).error(android.R.drawable.sym_def_app_icon).into(this)
+    }
+
+}
+

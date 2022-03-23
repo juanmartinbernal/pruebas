@@ -1,8 +1,18 @@
 package com.juanmartin.videos.data.dto.comercios
 
+
+import android.os.Parcelable
+import com.squareup.moshi.Json
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class Stuart(
-    val active: Boolean,
-    val apiKey: String,
-    val apiSecret: String,
-    val customErrorManagement: Boolean
-)
+    @Json(name = "active")
+    val active: Boolean = false,
+    @Json(name = "apiKey")
+    val apiKey: String? = "",
+    @Json(name = "apiSecret")
+    val apiSecret: String? = "",
+    @Json(name = "customErrorManagement")
+    val customErrorManagement: Boolean = false
+) : Parcelable
