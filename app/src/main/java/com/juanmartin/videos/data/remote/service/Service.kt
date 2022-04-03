@@ -10,5 +10,5 @@ import retrofit2.http.GET
 
 interface Service {
     @GET("commerces/public")
-    suspend fun fetchVideos(): Response<ArrayList<ShopsItem>>
+    suspend fun fetchShops(): Response<ArrayList<ShopsItem>>
 }

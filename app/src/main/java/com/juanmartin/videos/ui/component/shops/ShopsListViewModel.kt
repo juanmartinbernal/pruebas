@@ -12,7 +12,6 @@ import com.juanmartin.videos.ui.base.BaseViewModel
 import com.juanmartin.videos.ui.component.shops.entities.ParamFilter
 import com.juanmartin.videos.utils.SingleEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -21,7 +20,8 @@ import javax.inject.Inject
 class ShopsListViewModel @Inject
 constructor(private val dataRepositoryRepository: DataRepositorySource) : BaseViewModel() {
 
-    val params = ParamFilter(0.0,0.0,"")
+    val params = ParamFilter(0.0, 0.0, "")
+
     /**
      * Data --> LiveData, Exposed as LiveData, Locally in viewModel as MutableLiveData
      */
@@ -76,11 +76,11 @@ constructor(private val dataRepositoryRepository: DataRepositorySource) : BaseVi
         openShopDetailsPrivate.value = shopItem
     }
 
-    fun filterByCategories(category : String){
+    fun filterByCategories(category: String) {
         filterByCategoriesPrivate.value = category
     }
 
-    fun updateShops(totalShops : Int){
+    fun updateShops(totalShops: Int) {
         totalShopsPrivate.value = totalShops
     }
 

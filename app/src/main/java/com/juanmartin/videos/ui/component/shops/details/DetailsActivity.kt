@@ -37,18 +37,16 @@ class DetailsActivity : BaseActivity() {
 
         viewModel.initIntentData(
             intent.getParcelableExtra(SHOP_ITEM_KEY)
-                ?: ShopsItem()/*intent.getParcelableExtra(SHOP_ITEM_KEY)*/
+                ?: ShopsItem()
         )
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.details_menu, menu)
         this.menu = menu
-
-        return true
+        return super.onCreateOptionsMenu(menu)
     }
-
 
     override fun observeViewModel() {
         observe(viewModel.shopData, ::initializeView)

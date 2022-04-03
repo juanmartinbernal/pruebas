@@ -19,7 +19,6 @@ allprojects {
     repositories {
         google()
         mavenCentral()
-        jcenter() // Warning: this repository is going to shut down soon
     }
 }
 
@@ -29,11 +28,10 @@ task clean(type: Delete) {
 
 ext {
     picassoVersion = '2.71828'
-    espressoVersion = '3.4.0'
-    espressoIntentsVersion = '3.4.0'
     moshiVersion = '1.11.0'
     retrofitVersion = '2.9.0'
     okhttpInterceptorVersion = '4.9.0'
-    activityKtxVersion= '1.2.0-rc01'
+    activityKtxVersion= '1.6.0-alpha01'
     hilt_viewmodels = '1.0.0-alpha03'
+    nav_version = "2.4.1"
 }

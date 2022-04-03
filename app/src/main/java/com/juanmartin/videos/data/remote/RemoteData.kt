@@ -22,8 +22,8 @@ constructor(
 ) :
     RemoteDataSource {
     override suspend fun requestShops(params : ParamFilter): Resource<Shops> {
-        val videosService = serviceGenerator.createService(Service::class.java)
-        return when (val response = processCall(videosService::fetchVideos)) {
+        val service = serviceGenerator.createService(Service::class.java)
+        return when (val response = processCall(service::fetchShops)) {
             is List<*> -> {
                 Resource.Success(data = Shops(response as ArrayList<ShopsItem>))
                 /*if(params.category.isNotEmpty()){

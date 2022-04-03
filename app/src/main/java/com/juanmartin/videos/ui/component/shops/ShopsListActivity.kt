@@ -58,12 +58,13 @@ class ShopsListActivity : BaseActivity() {
         shopsListViewModel.getShops()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+
         menuInflater.inflate(R.menu.main_actions, menu)
         // Associate searchable configuration with the SearchView
-        val item = menu?.findItem(R.id.action_search);
+        val item = menu.findItem(R.id.action_search)
 
-        val searchView = menu?.findItem(R.id.action_search)?.actionView as SearchView
+        val searchView = menu.findItem(R.id.action_search)?.actionView as SearchView
         searchView.queryHint = getString(R.string.search)
         val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
         searchView.apply {
@@ -82,7 +83,7 @@ class ShopsListActivity : BaseActivity() {
 
         item?.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
             override fun onMenuItemActionCollapse(p0: MenuItem?): Boolean {
-                shopAdapter?.filter?.filter("")
+                shopAdapter.filter.filter("")
                 return true
             }
 
@@ -91,7 +92,7 @@ class ShopsListActivity : BaseActivity() {
             }
         })
 
-        return true
+        return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -143,7 +144,7 @@ class ShopsListActivity : BaseActivity() {
                 }
 
             }
-            categories.add(0, ALL_CATEGORY);
+            categories.add(0, ALL_CATEGORY)
             shopCategoryAdapter = ShopCategoryAdapter(shopsListViewModel, categories)
             binding.rvCategoryList.adapter = shopCategoryAdapter
         }
