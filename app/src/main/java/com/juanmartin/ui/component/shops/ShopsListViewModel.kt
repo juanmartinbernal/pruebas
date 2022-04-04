@@ -1,5 +1,6 @@
 package com.juanmartin.ui.component.shops
 
+import android.location.Location
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -35,6 +36,9 @@ constructor(private val dataRepositoryRepository: DataRepositorySource) : BaseVi
     val totalShopsPrivate = MutableLiveData<Int>()
     val totalShopsData: LiveData<Int> get() = totalShopsPrivate
 
+    val totalNearShopsPrivate = MutableLiveData<Int>()
+    val totalNearShopsData: LiveData<Int> get() = totalNearShopsPrivate
+
     //TODO check to make them as one Resource
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     val searchFoundPrivate: MutableLiveData<String> = MutableLiveData()
@@ -63,7 +67,11 @@ constructor(private val dataRepositoryRepository: DataRepositorySource) : BaseVi
     val showToast: LiveData<SingleEvent<Any>> get() = showToastPrivate
 
 
-    fun getShops() {
+    fun getShops(location: Location?) {
+        if(location != null) {
+            params.latitude = location.latitude
+            params.longitude = location.longitude
+        }
         viewModelScope.launch {
             shopsLiveDataPrivate.value = Resource.Loading()
             dataRepositoryRepository.requestShops(params).collect {
@@ -84,6 +92,10 @@ constructor(private val dataRepositoryRepository: DataRepositorySource) : BaseVi
         totalShopsPrivate.value = totalShops
     }
 
+    fun updateNearShops(totalNearShops: Int) {
+        totalNearShopsPrivate.value = totalNearShops
+    }
+
     fun showToastMessage(errorCode: Int) {
         val error = errorManager.getError(errorCode)
         showToastPrivate.value = SingleEvent(error.description)
@@ -92,4 +104,6 @@ constructor(private val dataRepositoryRepository: DataRepositorySource) : BaseVi
     fun onSearchClick(query: String) {
         searchFoundPrivate.value = query
     }
+
+
 }

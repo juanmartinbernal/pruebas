@@ -1,5 +1,6 @@
 package com.juanmartin.ui.component.shops.adapter
 
+import android.location.Location
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
@@ -71,6 +72,18 @@ class ShopsAdapter(
             }
 
         }
+    }
+
+    fun orderNearShops() {
+        val resultList = ArrayList<ShopsItem>()
+        for (row in shops) {
+            if (row.distance != null && row.distance!! < 10) {
+                resultList.add(row)
+            }
+        }
+        shopFilterList = resultList
+        shopsListViewModel.updateNearShops(shopFilterList.size)
+        notifyDataSetChanged()
     }
 
 }

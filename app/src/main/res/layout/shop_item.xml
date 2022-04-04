@@ -16,10 +16,12 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <RelativeLayout
+        <LinearLayout
             android:id="@+id/lnyHeader"
             android:layout_width="match_parent"
             android:layout_height="48dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
             android:orientation="horizontal"
             app:layout_constraintTop_toTopOf="@+id/iv_shop_item_image">
 
@@ -27,21 +29,22 @@
                 android:id="@+id/img_category"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                android:layout_centerVertical="true"
                 android:layout_marginStart="@dimen/margin_outside16dp"
-                app:srcCompat="@android:drawable/sym_def_app_icon"
-                android:contentDescription="@string/app_name" />
+                android:contentDescription="@string/app_name"
+                app:srcCompat="@android:drawable/sym_def_app_icon" />
 
             <TextView
                 android:id="@+id/txtDistance"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
+                android:gravity="end"
+                android:layout_gravity="end|center_vertical"
+                android:textSize="@dimen/size_title"
                 android:textColor="@color/white"
-                android:layout_alignStart="@+id/img_category"
-                android:layout_marginStart="72dp"
+                android:textStyle="bold"
+                android:layout_marginEnd="@dimen/margin_outside16dp"
                 tools:text="250" />
-        </RelativeLayout>
+        </LinearLayout>
 
 
         <LinearLayout

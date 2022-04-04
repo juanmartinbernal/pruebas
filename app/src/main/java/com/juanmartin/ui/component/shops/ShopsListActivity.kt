@@ -1,8 +1,13 @@
 package com.juanmartin.ui.component.shops
 
+import android.Manifest
 import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.location.Location
+import android.location.LocationListener
+import android.location.LocationManager
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -10,7 +15,10 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.SearchView
 import android.widget.SearchView.OnQueryTextListener
+import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
@@ -31,13 +39,15 @@ import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class ShopsListActivity : BaseActivity() {
+class ShopsListActivity : BaseActivity(), LocationListener {
     private lateinit var binding: ShopsActivityBinding
 
     private val shopsListViewModel: ShopsListViewModel by viewModels()
     private lateinit var shopAdapter: ShopsAdapter
     private lateinit var shopCategoryAdapter: ShopCategoryAdapter
-
+    private lateinit var locationManager: LocationManager
+    private val locationPermissionCode = 2
+    private lateinit var currentLocation : Location
 
     override fun initViewBinding() {
         binding = ShopsActivityBinding.inflate(layoutInflater)
@@ -55,7 +65,9 @@ class ShopsListActivity : BaseActivity() {
         binding.rvCategoryList.setHasFixedSize(true)
         binding.rvShopList.layoutManager = layoutManager
         binding.rvShopList.setHasFixedSize(true)
-        shopsListViewModel.getShops()
+        binding.lnyTotalNearShops.setOnClickListener { shopAdapter.orderNearShops() }
+        getLocation()
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -97,7 +109,7 @@ class ShopsListActivity : BaseActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_refresh -> shopsListViewModel.getShops()
+            R.id.action_refresh -> shopsListViewModel.getShops(currentLocation)
         }
         return super.onOptionsItemSelected(item)
     }
@@ -116,6 +128,10 @@ class ShopsListActivity : BaseActivity() {
 
     private fun updateShops(totalShops: Int) {
         binding.txtTotalShops.text = totalShops.toString()
+    }
+
+    private fun updateNearShops(totalNearShops: Int) {
+        binding.txtTotalNearShops.text = totalNearShops.toString()
     }
 
     private fun bindListData(shops: Shops) {
@@ -205,11 +221,37 @@ class ShopsListActivity : BaseActivity() {
         }
     }
 
+    private fun getLocation() {
+        locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        if ((ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)) {
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), locationPermissionCode)
+        }
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 100f, this)
+    }
+    override fun onLocationChanged(location: Location) {
+        currentLocation = location
+        shopsListViewModel.getShops(currentLocation)
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == locationPermissionCode) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show()
+            }
+            else {
+                Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+
     override fun observeViewModel() {
         observe(shopsListViewModel.shopsLiveData, ::handleCategoriesList)
         observe(shopsListViewModel.searchFound, ::showSearchResult)
         observe(shopsListViewModel.noSearchFound, ::noSearchResult)
         observe(shopsListViewModel.totalShopsData, ::updateShops)
+        observe(shopsListViewModel.totalNearShopsData, ::updateNearShops)
         observe(shopsListViewModel.filterByCategoriesData, ::filterByCategory)
         observe(shopsListViewModel.openShopDetails, ::navigateToDetailsScreen)
         observeSnackBarMessages(shopsListViewModel.showSnackBar)

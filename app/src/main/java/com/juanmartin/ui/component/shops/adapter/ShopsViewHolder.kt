@@ -25,6 +25,8 @@ class ShopsViewHolder(private val itemBinding: ShopItemBinding) :
         itemBinding.tvDescrition.visibility = if (shopItem.shortDescription == null )View.GONE else View.VISIBLE
         itemBinding.tvDescrition.text = shopItem.shortDescription
        // itemBinding.tvLocation.text = shopItem.address.country.plus(" ").plus( shopItem.address.city).plus(" ").plus(shopItem.address.street)
+
+        itemBinding.txtDistance.text = shopItem.distance?.toInt().toString().plus( " km")
         itemBinding.ivShopItemImage.loadImage(shopItem.logo?.url)
         itemBinding.rlShopItem.setOnClickListener {
             recyclerItemListener.onItemSelected(
