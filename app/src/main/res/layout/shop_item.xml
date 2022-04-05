@@ -16,106 +16,119 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/lnyHeader"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_gravity="center_vertical"
             android:gravity="center_vertical"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toTopOf="@+id/iv_shop_item_image">
+            android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/img_category"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_marginStart="@dimen/margin_outside16dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="@dimen/cardview_border8dp"
                 android:contentDescription="@string/app_name"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@android:drawable/sym_def_app_icon" />
 
             <TextView
                 android:id="@+id/txtDistance"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="end"
-                android:layout_gravity="end|center_vertical"
-                android:textSize="@dimen/size_title"
-                android:textColor="@color/white"
-                android:textStyle="bold"
                 android:layout_marginEnd="@dimen/margin_outside16dp"
+                android:gravity="end|center_vertical"
+                android:textColor="@color/white"
+                android:textSize="@dimen/size_title"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:text="250" />
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/linearLayout3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
+            android:layout_margin="@dimen/cardview_border8dp">
 
             <ImageView
                 android:id="@+id/iv_shop_item_image"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_margin="16dp"
+                android:contentDescription="@string/app_name"
                 android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@android:drawable/sym_def_app_icon" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/cardview_border8dp"
-                android:orientation="vertical">
+                android:layout_marginStart="@dimen/cardview_border8dp"
+                android:layout_marginEnd="@dimen/cardview_border8dp"
+                android:maxLines="2"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/textOpen"
+                app:layout_constraintStart_toEndOf="@id/iv_shop_item_image"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="name" />
 
-                <TextView
-                    android:id="@+id/tv_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:maxLines="2"
-                    android:textColor="@android:color/black"
-                    android:textStyle="bold"
-                    tools:text="name" />
+            <TextView
+                android:id="@+id/textOpen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/cardview_border8dp"
+                android:layout_marginEnd="@dimen/cardview_border8dp"
+                android:maxLines="1"
+                android:text="@string/open"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/tv_caption"
+                app:layout_constraintStart_toEndOf="@id/iv_shop_item_image"
+                app:layout_constraintTop_toBottomOf="@id/tv_name" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:maxLines="1"
-                    android:textColor="@android:color/black"
-                    android:textStyle="bold"
-                    android:text="@string/open" />
+            <TextView
+                android:id="@+id/tv_caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/cardview_border8dp"
+                android:layout_marginEnd="@dimen/cardview_border8dp"
+                android:ellipsize="marquee"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:maxLines="1"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:textColor="@android:color/black"
+                app:layout_constraintBottom_toBottomOf="@id/tv_descrition"
+                app:layout_constraintStart_toEndOf="@id/iv_shop_item_image"
+                app:layout_constraintTop_toBottomOf="@id/textOpen"
+                tools:text="opening hours" />
 
-                <TextView
-                    android:id="@+id/tv_caption"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/space_min4d"
-                    android:focusable="true"
-                    android:ellipsize="marquee"
-                    android:focusableInTouchMode="true"
-                    android:marqueeRepeatLimit="marquee_forever"
-                    android:scrollHorizontally="true"
-                    android:singleLine="true"
-                    android:textColor="@android:color/black"
-                    tools:text="opening hours" />
-                <TextView
-                    android:id="@+id/tv_descrition"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/space_min4d"
-                    android:maxLines="2"
-                    android:textColor="@android:color/black"
-                    tools:text="description" />
-                <TextView
-                    android:id="@+id/tv_location"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/space_min4d"
-                    android:maxLines="2"
-                    android:visibility="gone"
-                    android:textColor="@android:color/black"
-                    tools:text="location" />
-            </LinearLayout>
-        </LinearLayout>
+            <TextView
+                android:id="@+id/tv_descrition"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/cardview_border8dp"
+                android:maxLines="2"
+                android:textColor="@android:color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/iv_shop_item_image"
+                app:layout_constraintTop_toBottomOf="@id/tv_caption"
+                tools:text="description" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>
