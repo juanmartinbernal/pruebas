@@ -47,7 +47,7 @@ class ShopsListActivity : BaseActivity(), LocationListener {
     private lateinit var shopCategoryAdapter: ShopCategoryAdapter
     private lateinit var locationManager: LocationManager
     private val locationPermissionCode = 2
-    private lateinit var currentLocation : Location
+    private var currentLocation : Location = Location("")
 
     override fun initViewBinding() {
         binding = ShopsActivityBinding.inflate(layoutInflater)
@@ -66,8 +66,8 @@ class ShopsListActivity : BaseActivity(), LocationListener {
         binding.rvShopList.layoutManager = layoutManager
         binding.rvShopList.setHasFixedSize(true)
         binding.lnyTotalNearShops.setOnClickListener { shopAdapter.orderNearShops() }
-        getLocation()
-
+       // getLocation()
+        shopsListViewModel.getShops(currentLocation)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -227,7 +227,9 @@ class ShopsListActivity : BaseActivity(), LocationListener {
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), locationPermissionCode)
         }
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 100f, this)
+
     }
+
     override fun onLocationChanged(location: Location) {
         currentLocation = location
         shopsListViewModel.getShops(currentLocation)

@@ -2,23 +2,28 @@ package com.juanmartin.utils
 
 import android.content.Context
 import android.net.ConnectivityManager
-import android.net.NetworkInfo
+import android.net.NetworkCapabilities
 import javax.inject.Inject
 
 
 class Network @Inject constructor(val context: Context) : NetworkConnectivity {
-    override fun getNetworkInfo(): NetworkInfo? {
-        val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        return cm.activeNetworkInfo
-    }
 
     override fun isConnected(): Boolean {
-        val info = getNetworkInfo()
-        return info != null && info.isConnected
+        val connectivityManager =
+            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetwork = connectivityManager.activeNetwork ?: return false
+        val networkCapabilities =
+            connectivityManager.getNetworkCapabilities(activeNetwork) ?: return false
+        return when {
+            networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
+            networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
+            networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_BLUETOOTH) -> true
+            networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
+            else -> false
+        }
     }
 }
 
 interface NetworkConnectivity {
-    fun getNetworkInfo(): NetworkInfo?
     fun isConnected(): Boolean
 }

@@ -1,6 +1,5 @@
 package com.juanmartin.ui.component.shops.adapter
 
-import android.location.Location
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
@@ -10,7 +9,6 @@ import com.juanmartin.data.dto.comercios.ShopsItem
 import com.juanmartin.databinding.ShopItemBinding
 import com.juanmartin.ui.base.listeners.RecyclerItemListener
 import com.juanmartin.ui.component.shops.ShopsListViewModel
-import kotlin.collections.ArrayList
 
 
 class ShopsAdapter(

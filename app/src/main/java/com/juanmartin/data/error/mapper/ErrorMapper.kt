@@ -2,7 +2,8 @@ package com.juanmartin.data.error.mapper
 
 import android.content.Context
 import com.juanmartin.R
-import com.juanmartin.data.error.*
+import com.juanmartin.data.error.NETWORK_ERROR
+import com.juanmartin.data.error.NO_INTERNET_CONNECTION
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 

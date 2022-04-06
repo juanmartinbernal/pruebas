@@ -5,8 +5,11 @@ import android.graphics.BitmapFactory
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.juanmartin.*
+import com.juanmartin.BEAUTY_CATEGORY
+import com.juanmartin.FOOD_CATEGORY
+import com.juanmartin.LEISURE_CATEGORY
 import com.juanmartin.R.color.*
+import com.juanmartin.SHOPPING_CATEGORY
 import com.juanmartin.data.dto.comercios.ShopsItem
 import com.juanmartin.databinding.ShopItemBinding
 import com.juanmartin.ui.base.listeners.RecyclerItemListener
