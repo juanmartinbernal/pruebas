@@ -2,6 +2,8 @@ package com.juanmartin.data.remote
 
 
 import android.location.Location
+import com.google.android.gms.maps.model.LatLng
+import com.google.maps.android.SphericalUtil
 import com.juanmartin.data.Resource
 import com.juanmartin.data.dto.comercios.Shops
 import com.juanmartin.data.dto.comercios.ShopsItem
@@ -35,10 +37,9 @@ constructor(
 
                 result.shopsList.forEach {
                     if(it.latitude != null && it.longitude != null){
-                        val shopLocation = Location("provider")
-                        shopLocation.latitude = it.latitude
-                        shopLocation.longitude = it.longitude
-                        val distance = currentLocation.distanceTo(shopLocation)
+                        val myLocation = LatLng(currentLocation.latitude, currentLocation.longitude)
+                        val shopLocationMaps = LatLng(it.latitude, it.longitude)
+                        val distance = SphericalUtil.computeDistanceBetween(myLocation, shopLocationMaps);
                         it.distance = distance / 1000 //km
                         filter.add(it)
                     }

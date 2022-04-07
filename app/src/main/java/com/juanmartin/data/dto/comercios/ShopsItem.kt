@@ -109,7 +109,7 @@ data class ShopsItem(
     val wayletCommerceId: String? = "",
     @Json(name = "whiteLabel")
     val whiteLabel: Boolean? = false,
-    var distance : Float? = 0.0f,
+    var distance : Double? = 0.0,
    // @Json(name = "whiteLabelGroupId")
     //val whiteLabelGroupId: List<Any>
 ) : Parcelable

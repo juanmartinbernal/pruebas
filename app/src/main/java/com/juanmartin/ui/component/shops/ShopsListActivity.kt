@@ -1,25 +1,28 @@
 package com.juanmartin.ui.component.shops
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
-import android.location.LocationListener
 import android.location.LocationManager
 import android.os.Bundle
+import android.os.Looper
+import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View.*
+import android.view.View.INVISIBLE
+import android.view.View.VISIBLE
 import android.widget.SearchView
 import android.widget.SearchView.OnQueryTextListener
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.gms.location.*
 import com.google.android.material.snackbar.Snackbar
 import com.juanmartin.ALL_CATEGORY
 import com.juanmartin.R
@@ -38,15 +41,14 @@ import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class ShopsListActivity : BaseActivity(), LocationListener {
+class ShopsListActivity : BaseActivity() {
     private lateinit var binding: ShopsActivityBinding
 
     private val shopsListViewModel: ShopsListViewModel by viewModels()
     private lateinit var shopAdapter: ShopsAdapter
     private lateinit var shopCategoryAdapter: ShopCategoryAdapter
-    private lateinit var locationManager: LocationManager
-    private val locationPermissionCode = 2
-    private var currentLocation : Location = Location("")
+    lateinit var mFusedLocationClient: FusedLocationProviderClient
+    val PERMISSION_ID = 42
 
     override fun initViewBinding() {
         binding = ShopsActivityBinding.inflate(layoutInflater)
@@ -65,8 +67,10 @@ class ShopsListActivity : BaseActivity(), LocationListener {
         binding.rvShopList.layoutManager = layoutManager
         binding.rvShopList.setHasFixedSize(true)
         binding.lnyTotalNearShops.setOnClickListener { shopAdapter.orderNearShops() }
-       // getLocation()
-        shopsListViewModel.getShops(currentLocation)
+
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+        getLastLocation()
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -108,7 +112,7 @@ class ShopsListActivity : BaseActivity(), LocationListener {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_refresh -> shopsListViewModel.getShops(currentLocation)
+            R.id.action_refresh -> getLastLocation()//shopsListViewModel.getShops(currentLocation)
         }
         return super.onOptionsItemSelected(item)
     }
@@ -220,27 +224,105 @@ class ShopsListActivity : BaseActivity(), LocationListener {
         }
     }
 
-    private fun getLocation() {
-        locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        if ((ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)) {
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), locationPermissionCode)
-        }
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 100f, this)
 
-    }
+    @SuppressLint("MissingPermission")
+    private fun getLastLocation() {
+        if (checkPermissions()) {
+            if (isLocationEnabled()) {
 
-    override fun onLocationChanged(location: Location) {
-        currentLocation = location
-        shopsListViewModel.getShops(currentLocation)
-    }
-
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == locationPermissionCode) {
-            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show()
+                mFusedLocationClient.lastLocation.addOnCompleteListener(this) { task ->
+                    val location: Location? = task.result
+                    if (location == null) {
+                        requestNewLocationData()
+                    } else {
+                        shopsListViewModel.getShops(location)
+                        //   findViewById<TextView>(R.id.latTextView).text = location.latitude.toString()
+                        // findViewById<TextView>(R.id.lonTextView).text = location.longitude.toString()
+                    }
+                }
+            } else {
+                Toast.makeText(this, "Turn on location", Toast.LENGTH_LONG).show()
+                val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+                startActivity(intent)
             }
-            else {
+        } else {
+            requestPermissions()
+        }
+    }
+
+    private fun requestPermissions() {
+        ActivityCompat.requestPermissions(
+            this,
+            arrayOf(
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ),
+            PERMISSION_ID
+        )
+    }
+
+    @SuppressLint("MissingPermission")
+    private fun requestNewLocationData() {
+        val mLocationRequest = LocationRequest()
+        mLocationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+        mLocationRequest.interval = 0
+        mLocationRequest.fastestInterval = 0
+        mLocationRequest.numUpdates = 1
+
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+        Looper.myLooper()?.let {
+            mFusedLocationClient.requestLocationUpdates(
+                mLocationRequest, mLocationCallback,
+                it
+            )
+        }
+    }
+
+    private val mLocationCallback = object : LocationCallback() {
+        override fun onLocationResult(locationResult: LocationResult) {
+            val mLastLocation: Location = locationResult.lastLocation
+            shopsListViewModel.getShops(mLastLocation)
+            //  findViewById<TextView>(R.id.latTextView).text = mLastLocation.latitude.toString()
+            //findViewById<TextView>(R.id.lonTextView).text = mLastLocation.longitude.toString()
+        }
+    }
+
+    private fun isLocationEnabled(): Boolean {
+        val locationManager: LocationManager =
+            getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(
+            LocationManager.NETWORK_PROVIDER
+        )
+    }
+
+    private fun checkPermissions(): Boolean {
+        if (
+            ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission
+                (
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            return true
+        }
+        return false
+    }
+
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == PERMISSION_ID) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                getLastLocation()
+                Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show()
+            } else {
                 Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show()
             }
         }
