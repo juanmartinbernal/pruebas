@@ -11,8 +11,7 @@ import android.location.LocationManager
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View.GONE
-import android.view.View.VISIBLE
+import android.view.View.*
 import android.widget.SearchView
 import android.widget.SearchView.OnQueryTextListener
 import android.widget.Toast
@@ -188,15 +187,15 @@ class ShopsListActivity : BaseActivity(), LocationListener {
     }
 
     private fun showDataView(show: Boolean) {
-        binding.tvNoData.visibility = if (show) GONE else VISIBLE
-        binding.rvShopList.visibility = if (show) VISIBLE else GONE
+        binding.tvNoData.visibility = if (show) INVISIBLE else VISIBLE
+        binding.rvShopList.visibility = if (show) VISIBLE else INVISIBLE
         binding.pbLoading.toGone()
     }
 
     private fun showLoadingView() {
         binding.pbLoading.toVisible()
-        binding.tvNoData.toGone()
-        binding.rvShopList.toGone()
+        binding.tvNoData.toInvisible()
+        binding.rvShopList.toInvisible()
     }
 
 

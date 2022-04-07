@@ -5,23 +5,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintlayoutTotal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="2"
-        app:layout_constraintTop_toTopOf="parent"
-        android:baselineAligned="false">
+        android:layout_margin="@dimen/margin_outside16dp"
+        android:baselineAligned="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/rv_category_list"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:id="@+id/lnyTotalShops"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="32dp"
             android:background="@drawable/custom_border"
-            android:layout_weight="1"
-            android:layout_margin="@dimen/margin_outside16dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/lnyTotalNearShops"
+            app:layout_constraintStart_toStartOf="parent">
+
             <TextView
                 android:id="@+id/txtTotalShops"
                 android:layout_width="wrap_content"
@@ -35,18 +42,23 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/cardview_border8dp"
                 android:layout_marginBottom="@dimen/cardview_border8dp"
-                android:textColor="@color/white"
-                android:text="@string/shops_title" />
+                android:text="@string/shops_title"
+                android:textColor="@color/white" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/lnyTotalNearShops"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
             android:background="@drawable/custom_border"
-            android:layout_weight="1"
-            android:layout_margin="@dimen/margin_outside16dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="invisible"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/lnyTotalShops">
+
             <TextView
                 android:id="@+id/txtTotalNearShops"
                 android:layout_width="wrap_content"
@@ -60,12 +72,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/cardview_border8dp"
                 android:layout_marginBottom="@dimen/cardview_border8dp"
-                android:textColor="@color/white"
-                android:text="@string/shops_title" />
+                android:text="@string/shops_title"
+                android:textColor="@color/white" />
         </LinearLayout>
 
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_category_list"
@@ -76,8 +88,10 @@
         android:layout_marginEnd="@dimen/margin_outside16dp"
         android:orientation="horizontal"
         app:layoutManager="LinearLayoutManager"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        tools:layout_editor_absoluteX="16dp"
+        app:layout_constraintBottom_toTopOf="@id/rv_shop_list"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintlayoutTotal"
         tools:listitem="@layout/shop_category_item">
 
 
@@ -88,16 +102,17 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:listitem="@layout/shop_item"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rv_category_list" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rv_category_list"
+        tools:listitem="@layout/shop_item" />
 
     <FrameLayout
         android:id="@+id/pb_loading"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:focusable="true"
         android:clickable="true"
+        android:focusable="true"
         android:visibility="gone"
         tools:visibility="visible">
 

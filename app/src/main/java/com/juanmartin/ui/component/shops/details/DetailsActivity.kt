@@ -69,7 +69,11 @@ class DetailsActivity : BaseActivity() {
         binding.imgLocationMap.loadImage(URL_STATIC_MAPS + latitude.toString() + "," + longitude.toString() + "&zoom=14&size=400x400&markers=" + latitude.toString() + "," + longitude.toString() + "&key=" + API_KEY_STATIC_MAPS)
 
         //extras
-        binding.imgExtras.loadImage(if (shopItem.photos?.size!! > 0) shopItem.photos[0].thumbnails.medium else null)
+        var imgUrl = ""
+        if (shopItem.photos?.size != 0) {
+            imgUrl = shopItem.photos?.get(0)?.thumbnails?.medium.toString();
+        }
+        binding.imgExtras.loadImage(imgUrl)
         binding.txtInfo1Extras.text = shopItem.shortDescription
         binding.txtInfo2Extras.text = shopItem.openingHours
         binding.txtInfo2Extras.isSelected = true
@@ -81,7 +85,7 @@ class DetailsActivity : BaseActivity() {
         binding.tvDescription.text = shopItem.description
     }
 
-    fun goToMap(latitude: Double?, longitude: Double?) {
+    private fun goToMap(latitude: Double?, longitude: Double?) {
         val locationUri: Uri =
             Uri.parse("geo:0,0?q=".plus(latitude.toString()).plus(",").plus(longitude.toString()))
         val intent = Intent(Intent.ACTION_VIEW, locationUri)
